@@ -5,7 +5,7 @@ function App() {
   const [currSem, setCurrSem] = useState(1);
   const [sgpa, setSgpa] = useState({});
   const [credits, setCredits] = useState({});
-  
+
   const handleSgpaChange = (sem, value) => {
     setSgpa((prev) => ({
       ...prev,
@@ -19,22 +19,30 @@ function App() {
       [sem]: value,
     }));
   };
+
   const handleSubmit = () => {
+    // Check if all required fields are filled
+    for (let i = 1; i <= currSem; i++) {
+      if (!sgpa[i] || !credits[i]) {
+        alert(`Please fill in SGPA and Credits for Semester ${i}.`);
+        return;
+      }
+    }
+
     const totalCredits = Object.values(credits).reduce(
       (acc, curr) => acc + Number(curr),
       0
     );
-  
+
     const totalPoints = Object.keys(sgpa).reduce(
       (acc, sem) => acc + Number(sgpa[sem]) * Number(credits[sem]),
       0
     );
 
     const cgpa = totalPoints / totalCredits;
-  
-    alert("Wait is over... Your CGPA is" + cgpa.toFixed(2) + "🥳"); 
+
+    alert("Wait is over... Your CGPA is " + cgpa.toFixed(2) + " 🥳");
   };
-  
 
   return (
     <div className="App">
@@ -64,6 +72,7 @@ function App() {
               min="0"
               max="10"
               value={sgpa[sem] || ""}
+              required
               onChange={(e) => handleSgpaChange(sem, e.target.value)}
             />
             <label>Total Credits:</label>
@@ -72,12 +81,33 @@ function App() {
               step="1"
               min="1"
               value={credits[sem] || ""}
+              required
               onChange={(e) => handleCreditsChange(sem, e.target.value)}
             />
           </div>
         ))}
-        <button onClick={()=>handleSubmit()}>Find My CGPA 😭</button>
-        
+        <button className="responsive-button" onClick={handleSubmit}>
+          Find My CGPA 😭
+        </button>
+        <footer className="footer">
+          Made With ❤️ By -{" "}
+          <a
+            href="https://www.linkedin.com/in/adivya-jain/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Adivya Jain
+          </a>{" "}
+          <br />
+          Don't Forget to Follow Me:{" "}
+          <a
+            href="https://github.com/adivya-jain"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            My GitHub
+          </a>
+        </footer>
       </div>
     </div>
   );
