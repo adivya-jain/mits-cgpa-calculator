@@ -47,7 +47,8 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>CGPA Calculator</h1>
+        <h1>MITS CGPA Calculator</h1>
+        <h5>( Uses CGPA calculation formula as specified by Institute )</h5>
 
         <label>Select Your Semester:</label>
         <select
