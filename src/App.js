@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-
+import { Analytics } from "@vercel/analytics/react"
 function App() {
   const [currSem, setCurrSem] = useState(1);
   const [sgpa, setSgpa] = useState({});
@@ -108,6 +108,7 @@ function App() {
           >
             My GitHub
           </a>
+          <Analytics/>
         </footer>
       </div>
     </div>
