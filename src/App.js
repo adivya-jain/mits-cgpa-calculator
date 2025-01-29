@@ -100,7 +100,7 @@ function App() {
             Adivya Jain
           </a>{" "}
           <br />
-          Don't Forget to Follow Me:{" "}
+          Connect With Me:{" "}
           <a
             href="https://github.com/adivya-jain"
             target="_blank"
